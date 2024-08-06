@@ -478,6 +478,79 @@ t->next=NULL;
 return L;
 }
 
+第七节双链表
+双链表节点中有两个指针分别指向前驱节点和后继结点
+1.定义双链表
+typedef struct DNode{
+ElemType data;
+struct DNode *prior,*next;
+}DNode,*DLinklist;
+2.初始化双链表
+bool InitDlinkList(DLinklist &L){
+L=(DNode*)malloc(sizeof(DNode));
+if(L==NULL){
+return false;
+}
+L->prior=NULL;
+L->next=NULL:
+return ture;
+}
+3.双链表的插入
+bool InsertNextDNode(DNode *p,DNode*s){
+if(p==NULL||s==NULL)
+return false;
+s->next=p-next;
+if(p->next!=NULL)
+p->next->prior=s;
+s->prior=p;
+p->next=s;
+return ture;
+}
+4.双链表的删除
+bool DeleteNextDNode(DNode *p){
+if(p==NULL)
+return false;
+DNode *q=p->next;
+if(q==NULL)
+return false;
+p->next=q->next;
+q->next->prior=p;
+free(q);
+return ture;
+}
+5.双链表的销毁
+void DestroyList(DLinklist &L){
+while (L->next==NULL){
+DeleteNextDNode(L);
+free(L);
+L=NULL;
+}
+6.双链表的遍历
+while(p!=NULL)
+p=p->next;
+p=p->prior;
+
+第八节循环链表
+1.循环单链表最后一个节点指向头结点；
+可以通过一个节点寻找任意一结点；
+2.循环双链表头结点的头指针指向尾尾结点，尾结点尾指针指向头结点；
+
+第九节静态链表
+1.静态链表借助数组来描述线性表的链式存储结构，节点也有数据域和指针域，这里的指针指示表示结点之间的相对地址，又称为游标，需要分配一块连续的空间。
+2.代码定义
+#define MaxSize 10
+typedef struct{
+ElemType data;
+int next;
+}SLinkList[MaxSize];
+struct  Node{
+int data;
+int next;
+};
+3.相关操作
+初始化静态链表将头结点next设为－1
+
+
 
 
 
