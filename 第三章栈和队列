@@ -1,0 +1,154 @@
+第一节栈的定义和基本操作
+1.定义：栈是只允许在一端进行插入删除操作的线性表。
+2.重要术语：栈顶，栈底，空栈。
+3.栈的基本操作
+初始化，销毁，进栈，出栈，读栈顶元素，判空栈是否为空。
+4.栈的常考题型
+n个不同的元素进栈，出栈元素排列为卡特兰数。
+第二节顺序栈的实现
+1.用顺序存储的方式实现栈
+2.顺序栈的定义
+
+#define MaxSize 10
+typedef struct{
+ElemType data[MaxSize];
+int top;
+}SqStaack;
+//初始化
+void InitStack(SqStack &5){
+S.top=-1;
+}
+//判空
+bool StackEmpty(Sqstack S){
+if(S.top==-1)
+return ture;
+else
+return false;
+}
+//新元素入栈
+bool Push(SqStack &S,ElemType x){
+if(S.top==MaxSize-1)
+return false;
+S.top=S.top+1;
+S.data[S.top]=x;
+return ture;
+}
+//出栈操作
+bool Pop(SqStack &S,Elemtype &x){
+if(S.top==-1)
+return false;
+x=S.data[S.top];
+S.top=S.top-1;
+return ture;
+}
+//读取栈顶元素
+bool GetTop(SqStack S,ELemTy &x){
+if(S.top==-1)
+return flase;
+x=S.data[S.top];
+}
+3.共享栈的定义与初始化
+#define MaxSize 10
+typedef struct{
+ElemType data[MaxSize]
+int top0;
+int top1;
+}ShStack;
+
+//初始化栈
+viod InitStack(ShStack &5){
+S.top0=1;
+S.top1=MaxSize;
+}
+第三节栈的链式存储
+1.代码定义
+typedef struct LinkNode{
+ElemType data;
+struct LinkNode *next;
+}*LiStack;
+
+第四节队列的定义和基本操作
+1.只允许在一端进行操作另一端进行删除。
+术语：队头，队尾，空队列。
+队列特点先进先出FIFO
+栈的特点：先进后出FILO
+2.队列的基本操作：初始化，销毁，增加，删除，查询，判空。
+第五节队列的顺序实现
+1.用顺序存储实现队列
+#define MaxSize 10;
+typedef struct{
+ElemTupe data[MaxSize];
+int front,rear;
+}SqQueue;
+//初始化队列
+void InitQueue(SqQueue &Q){
+Q.rear=Q.front=0;
+}
+//入队操作
+bool EnQueue(SqQueue &Q,Elemtype x){
+if((Q.rear+1)%MaxSize==Q.front)
+return false;
+Q.data[Q.rear]=x;
+Q.rear=(Q.rear+1)%MaxSize;//取模运算可以让数据呈环状分布
+return ture;
+}
+//出队操作
+bool DeQueue(SqQueue &Q,ElemType &x){
+if(Q.rear==Q.front) 
+return false;
+x=Q.data[Q.front]
+Q.front=(Q.front+1)%MaxSize；
+return ture;
+}
+bool GetQueue(SqQueue &Q,ElemType %x){
+if(Q.rear==Q.front)
+return false;
+x=Q.data[Q.front];
+return ture;
+}
+//判断队满队空
+1.可以设置size‘变量’表示队列中的元素个数
+2.每次删除操作时令tag==0；每次插入操作是令tag==1；
+队满条件front==size&tag==1，队空条件front==rear&&tag==0；
+3.队列元素个数
+（rear+MaxSize-front)%MaxSize;
+第五节队列的链式存储
+typedef struct LinkNode{
+ElemType data;
+Struct LinkNode *next;
+}LinkNode;
+typedef struct{
+LinkNode *front ,*rear;
+}LinkQueue;
+//队列的初始化
+void InitQueue(LinkQueue &Q){
+Q.front=Q.reaar=(LinkQueue*)malloc(sizeof(LinkNode));//头结点
+建立
+Q.front->next=NULL；
+}
+//判空
+bool IsEmpty(LinkQueue Q){
+if(Q.front=Q.rear)
+return ture;
+else return false;
+}
+//入队
+void EnQueue(LinkQueue &Q,ElemType x)
+ LinkNode *s=(LinkNode *)malloc(sizeof(LinkNode);
+s->data=x;s->next=NULL;
+Q.rear->next=s;
+Q.raer=s;
+}
+//出队
+bool DeQueue(LinkQueue &Q,ElemType &x){
+if(Q.front=Q.rear)  return false;
+LinkNode *p=Q.front->next;
+x=p->data;
+Q.front->next=p->next;
+if(Q.rear==p);
+Q.rear=Q.front;
+free(p);
+}
+
+
+
