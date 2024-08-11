@@ -88,3 +88,37 @@ else
 return 0;
 }
 时间复杂度n*m；
+第四节KMP算法
+1.对于第一次朴素模式算法的匹配可以知道前若干个相同的信息，对于前若干个信息进行筛除，找到与模式串相同的部分，再往后进行匹配，循环往复，提高算法效率。
+2.KMP算法只针对模式串，产生相应的指针变化。
+3.设计next数组存储模式串指针对应的指向位置。
+4.代码实现
+int Index_KMP(SString S,SString T,int next[]){
+int i=1,j=1;
+while(i<S.length&&j<=T.length){
+if(j==0||S.ch[i]==T.ch[j]){
+++i;
+++j;
+}
+else
+j=next[j];
+}
+if(j>t.length)
+return i-T.length;
+else
+return 0;
+}
+时间复杂度m+n.
+第五节求next数组
+1.对于任意模式串的next数组前两位都是0，1
+2.其它位置：在不匹配的位置做分割线，依次向前迁移模式串找到匹配位置，此时指针指向第N位，next数组对应元素就是N；
+第六节KMP算法的优化
+1.next数组优化思路
+nextval[1]=0;
+for(int j=2;j<=T.length;j++){
+if(T.ch[next[j]]==T.ch[j])
+nextval[j]=nextval[next[j]];
+else
+nextval[j]=next[j];
+}
+
